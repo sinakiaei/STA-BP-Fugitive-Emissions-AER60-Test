@@ -1,3 +1,4 @@
+import re
 import requests
 
 def things_name_checker(name):
@@ -14,7 +15,7 @@ def things_name_checker(name):
         return print("The first four letters must be alphabetical.")
     if not name2.isnumeric():
         return print("The last seven letters must be numerical.")
-    return print(f"{name} as a thing's name has a valid AER facility ID.")
+    return print(f"{name} as a thing's name is a valid AER facility ID.")
 
 def datastream_checker(name, ds_number):
     # This function checks if the Report facility (Thing) has at least three separate Datastreams which are 
