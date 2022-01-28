@@ -38,6 +38,8 @@ def datastream_checker(name, ds_number):
 
 def volume_datastream_properities_checker(name, ds_number):
     # This function checks if Fugitive Emissions Volume (m3) datastream has a valid properties.
+    # Testing observationType and unitOfMeasurement
+
     Datastream_name_Volume = "Fugitive Emissions Volume (m3)"
     for n in range(ds_number):
             datastream_name = thing_datastreams['value'][n]['name']
@@ -59,6 +61,8 @@ def volume_datastream_properities_checker(name, ds_number):
 
 def mass_datastream_properities_checker(name, ds_number):
     # This function checks if Fugitive Emissions Mass Methane (kg) datastream has a valid properties.
+    # Testing observationType and unitOfMeasurement
+
     Datastream_name_Volume = "Fugitive Emissions Mass Methane (kg)"
     for n in range(ds_number):
             datastream_name = thing_datastreams['value'][n]['name']
@@ -80,6 +84,8 @@ def mass_datastream_properities_checker(name, ds_number):
 
 def number_of_fg_datastream_properities_checker(name, ds_number):
     # This function checks if Number of identified sources of fugitive emissions datastream has a valid properties.
+    # Testing observationType
+
     Datastream_name_Volume = "Number of identified sources of fugitive emissions"
     for n in range(ds_number):
             datastream_name = thing_datastreams['value'][n]['name']
@@ -116,6 +122,7 @@ for n in range(len(things['value'])):
 print()
 
 # Check 3 valid Datastreams of the Reporting facility (Thing) has valid properties.
+
 for n in range(len(things['value'])): 
     thing = things['value'][n]
     thing_id = things['value'][n]['@iot.id']
