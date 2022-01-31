@@ -116,9 +116,6 @@ def observed_property_checker(thing_name,datastream_name, observed_property):
     return print(f'{datastream_name} datastream of {thing_name} facility ID has a valid observedProperty.')
 
 
-
-
-
 req_things = requests.get('http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things')
 things = req_things.json()
 
