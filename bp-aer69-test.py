@@ -35,7 +35,7 @@ def datastream_checker(name, ds_number):
             datastream_name = thing_datastreams['value'][n]['name']
             if not datastream_name in Datastream_names:
                 return print(f'{datastream_name} is not a valid datastream name.')
-    return print(f'{name} facility ID has at least three separate valid Datastreams.')
+    return print(f'{name} facility ID has three separate valid Datastreams.')
 
 def volume_datastream_properities_checker(name, ds_number):
     # This function checks if Fugitive Emissions Volume (m3) datastream has a valid properties.
@@ -99,9 +99,25 @@ def number_of_fg_datastream_properities_checker(name, ds_number):
 
             return print(f'Number of identified sources of fugitive emissions datastream properties of {name} facility ID is valid as defined.')
 
-# def observe_properties_checker(name,ds_number):
-    # This function checks if observerdProperty  identified sources of fugitive emissions datastream has a valid properties.
-    # Testing observationType
+def observed_property_checker(thing_name,datastream_name, observed_property):
+    # This function checks if observerdProperty identified sources of fugitive emissions datastream has valid properties.
+    # Testing name, definition, and description.
+    observed_property_name = observed_property['name']
+    observed_property_definition = observed_property['definition']
+    observed_property_description = observed_property['description']
+
+    if not observed_property_description == 'Fugitive methane emissions are the unintentional releases of methane to the atmosphere':
+        return print("The observedProperty description shall be 'Fugitive methane emissions are the unintentional releases of methane to the atmosphere.'")
+    elif not observed_property_definition == 'http://www.opengis.net/def/integrated-methane-sensor-web/observed-properties/fugitive-methane-emissions':
+        return print("The observedProperty definition shall be 'http://www.opengis.net/def/integrated-methane-sensor-web/observed-properties/fugitive-methane-emissions'.")
+    elif not observed_property_name == 'Fugitive Methane Emissions':
+        return print("The observedProperty name shall be 'Fugitive Methane Emissions'." )
+
+    return print(f'{datastream_name} datastream of {thing_name} facility ID has a valid observedProperty.')
+
+
+
+
 
 req_things = requests.get('http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things')
 things = req_things.json()
@@ -128,10 +144,17 @@ print()
 for n in range(len(things['value'])): 
     thing = things['value'][n]
     thing_id = things['value'][n]['@iot.id']
-    req_thing_datastreams = requests.get('http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things('+str(thing_id)+')/Datastreams')
+    req_thing_datastreams = requests.get('http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things(' + str(thing_id) + ')/Datastreams')
     thing_datastreams = req_thing_datastreams.json()
     number_datastream = len(thing_datastreams['value'])
     volume_datastream_properities_checker(thing['name'], number_datastream)
     mass_datastream_properities_checker(thing['name'], number_datastream)
     number_of_fg_datastream_properities_checker(thing['name'], number_datastream)
+    for nu in range(number_datastream):
+        datastream_id = thing_datastreams['value'][nu]['@iot.id']
+        datastream_name = thing_datastreams['value'][nu]['name']
+        datastream_observed_property = requests.get('http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Datastreams('+ str(datastream_id) +')/ObservedProperty')
+        observed_property = datastream_observed_property.json()
+        observed_property_checker(thing['name'], datastream_name, observed_property)
     print()
+
