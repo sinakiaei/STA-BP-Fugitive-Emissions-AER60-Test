@@ -209,9 +209,10 @@ def observed_property_properties_checker(thing_name, datastream_name, observed_p
             print(f'Properties of observedProperty of {datastream_name} datastream of {thing_name} reporting facility is valid.')
 
 ####################################### Main #######################################
-
+print()
+print()
 url = input('To validate created Things and the required classes and requirement, please insert a link of created Things,\n'
-            'for instance, http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things:\n')
+            'for instance, http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things:\n\n')
 url_Datastreams = url.replace("Things", "Datastreams")
 req_things = requests.get(url)
 things = req_things.json()
