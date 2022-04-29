@@ -7,3 +7,9 @@ You need to clone a repository and run the main python file exists in this repos
 To validate created Things and the required classes and requirements, 
 you need to insert a link of created Things, for example, http://imsw.gswlab.ca:8080/FROST-Server/v1.1/Things
 
+## Improvement Idea
+
+1. In case, there are more than one, check all observed properties instead of only one. 
+2. Add log file
+3. Print time
+
