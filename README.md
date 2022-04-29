@@ -9,7 +9,7 @@ you need to insert a link of created Things, for example, http://imsw.gswlab.ca:
 
 ## Improvement Idea
 
-1. In case, there are more than one, check all observed properties instead of only one. 
+1. In case, there are more than one observed properties, check all observed properties instead of only one. 
 2. Add log file
 3. Print time
 
